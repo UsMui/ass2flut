@@ -75,21 +75,41 @@ class _TabBarExampleState extends State<TabBarExample>
                       itemBuilder: (BuildContext context, index) {
                         return Container(
                           margin: EdgeInsets.all(8.0),
-                          child: Column(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0), // Đặt giá trị này theo ý muốn của bạn
+                          ),
+                          child: Stack(
+                            alignment: Alignment.center,
                             children: [
-                              Image.network(
-                                placesImages[index],
-                                width: 100,
-                                height: 100,
-                                fit: BoxFit.cover,
+                              // Background Image
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10.0), // Đặt giá trị này giống với trên
+                                child: Image.network(
+                                  placesImages[index],
+                                  width: 200,
+                                  height: 200,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                              SizedBox(height: 8),
-                              Text("Place ${index + 1}"),
+                              // Overlay Text
+                              Positioned(
+                                bottom: 18,
+                                child: Text(
+                                  "Place ${index + 1}",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         );
                       },
                     ),
+
+
                     Text(" this is tabbar for inspiration"),
                     ListView.builder(
                         scrollDirection: Axis.vertical,
